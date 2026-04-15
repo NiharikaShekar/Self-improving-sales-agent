@@ -24,9 +24,19 @@ REJECTED_SIGNALS = [
 
 
 class ConversationEngine:
-    def __init__(self):
+    def __init__(self, voice_mode: bool = False):
         self.client = Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
         self.script = self._load_script()
+        self.voice_mode = voice_mode
+        self.tts = None
+
+        if voice_mode:
+            try:
+                from voice.tts import TextToSpeech
+                self.tts = TextToSpeech()
+            except Exception as e:
+                print(f"  Voice init failed: {e}. Falling back to text mode.")
+                self.voice_mode = False
 
     def _load_script(self) -> dict:
         with open(SCRIPT_PATH) as f:
@@ -73,14 +83,20 @@ class ConversationEngine:
             return "rejected"
         return None
 
+    def _speak(self, text: str) -> None:
+        if self.voice_mode and self.tts:
+            print("  [Speaking...]\n")
+            self.tts.speak(text)
+
     def run(self, prospect_name: str, persona: str = "skeptical") -> dict:
         prospect = ProspectSimulator(persona=persona)
         agent_messages = []
         conversation_log = []
         outcome = "incomplete"
 
+        mode_label = "VOICE + TEXT" if self.voice_mode else "TEXT"
         print(f"\n{'='*60}")
-        print(f"  CALL SIMULATION")
+        print(f"  CALL SIMULATION [{mode_label}]")
         print(f"  Prospect : {prospect_name}  |  Persona : {persona}")
         print(f"  Script   : v{self.script['version']}  |  Product : {self.script['product_name']}")
         print(f"{'='*60}\n")
@@ -97,6 +113,7 @@ class ConversationEngine:
         agent_reply = self._agent_turn(agent_messages)
         conversation_log.append({"role": "agent", "content": agent_reply})
         print(f"AGENT     : {agent_reply}\n")
+        self._speak(agent_reply)
 
         # --- Conversation loop (max 8 prospect turns) ---
         for _ in range(8):
@@ -117,6 +134,7 @@ class ConversationEngine:
             agent_reply = self._agent_turn(agent_messages)
             conversation_log.append({"role": "agent", "content": agent_reply})
             print(f"AGENT     : {agent_reply}\n")
+            self._speak(agent_reply)
 
         print(f"\n{'='*60}")
         print(f"  OUTCOME : {(outcome or 'incomplete').upper()}")
@@ -131,6 +149,7 @@ class ConversationEngine:
             "outcome": outcome or "incomplete",
             "turn_count": len(conversation_log),
             "conversation": conversation_log,
+            "voice_enabled": self.voice_mode,
         }
 
     def _agent_turn(self, messages: list) -> str:

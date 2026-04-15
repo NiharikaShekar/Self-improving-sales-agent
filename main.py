@@ -12,8 +12,8 @@ DEMO_CALLS = [
 ]
 
 
-def run_single_call(prospect_name: str, persona: str) -> None:
-    engine = ConversationEngine()
+def run_single_call(prospect_name: str, persona: str, voice: bool = False) -> None:
+    engine = ConversationEngine(voice_mode=voice)
     analyzer = CallAnalyzer()
 
     result = engine.run(prospect_name=prospect_name, persona=persona)

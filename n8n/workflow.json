@@ -1,0 +1,75 @@
+{
+  "name": "PulseIQ Self-Improving Sales Agent",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "node-trigger",
+      "name": "Start Demo",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [200, 300]
+    },
+    {
+      "parameters": {
+        "url": "http://host.docker.internal:8000/run-batch",
+        "options": { "timeout": 300000 }
+      },
+      "id": "node-batch-v1",
+      "name": "Run Batch (v1 Script)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [440, 300]
+    },
+    {
+      "parameters": {
+        "url": "http://host.docker.internal:8000/improve",
+        "options": { "timeout": 120000 }
+      },
+      "id": "node-improve",
+      "name": "Improve Script",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "url": "http://host.docker.internal:8000/run-batch",
+        "options": { "timeout": 300000 }
+      },
+      "id": "node-batch-v2",
+      "name": "Run Batch (v2 Script)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [920, 300]
+    },
+    {
+      "parameters": {
+        "url": "http://host.docker.internal:8000/stats",
+        "options": { "timeout": 10000 }
+      },
+      "id": "node-stats",
+      "name": "Get Final Stats",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1160, 300]
+    }
+  ],
+  "connections": {
+    "Start Demo": {
+      "main": [[{ "node": "Run Batch (v1 Script)", "type": "main", "index": 0 }]]
+    },
+    "Run Batch (v1 Script)": {
+      "main": [[{ "node": "Improve Script", "type": "main", "index": 0 }]]
+    },
+    "Improve Script": {
+      "main": [[{ "node": "Run Batch (v2 Script)", "type": "main", "index": 0 }]]
+    },
+    "Run Batch (v2 Script)": {
+      "main": [[{ "node": "Get Final Stats", "type": "main", "index": 0 }]]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  }
+}
