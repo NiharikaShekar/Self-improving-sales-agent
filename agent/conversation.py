@@ -12,7 +12,9 @@ SCRIPT_PATH = Path(__file__).parent / "script.json"
 CONVERTED_SIGNALS = [
     "sounds reasonable", "that works", "go ahead and send",
     "let's schedule", "book that", "i'm in", "yes, i'd be open",
-    "send it over", "that sounds good"
+    "send it over", "that sounds good", "talk tuesday", "talk wednesday",
+    "send the invite", "send a calendar", "lock it in", "we're good",
+    "sounds good", "that makes sense", "let's do it", "i'm open"
 ]
 
 REJECTED_SIGNALS = [
@@ -51,7 +53,7 @@ class ConversationEngine:
             f"CLOSING (use when the moment is right):\n"
             f"{script['closing']}\n\n"
             f"RULES:\n"
-            f"- Be conversational and human — do not read the script verbatim\n"
+            f"- Be conversational and human - do not read the script verbatim\n"
             f"- Keep each response to 2-4 sentences\n"
             f"- Listen to what the prospect says and adapt accordingly\n"
             f"- If the prospect clearly wants to end the call, close gracefully\n"

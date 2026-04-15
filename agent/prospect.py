@@ -47,7 +47,7 @@ class ProspectSimulator:
             f"PERSONA:\n{PERSONAS[self.persona]}\n\n"
             f"RULES:\n"
             f"- Respond as a real human would: short, natural, sometimes impatient\n"
-            f"- Raise objections that fit your persona naturally — do not volunteer them all at once\n"
+            f"- Raise objections that fit your persona naturally - do not volunteer them all at once\n"
             f"- If the agent handles your concerns well, gradually become more open\n"
             f"- If you agree to a follow-up call or next step, end with a phrase like 'that sounds reasonable' or 'go ahead and send that over'\n"
             f"- If you want to end the call, say something like 'I have to go' or 'I am not interested, take care'\n"

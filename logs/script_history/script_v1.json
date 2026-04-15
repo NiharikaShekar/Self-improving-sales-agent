@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "product_name": "PulseIQ",
+  "product_description": "an AI-powered marketing intelligence platform that helps growth teams optimize campaign performance and reduce wasted ad spend",
+  "opening": "Hi {prospect_name}, this is Jordan calling from PulseIQ. I hope I haven't caught you at a bad time. We work with marketing and growth teams to cut wasted ad spend and improve campaign ROI using AI-driven insights, and I thought it might be worth a quick conversation. Do you have three minutes?",
+  "value_propositions": [
+    "Our clients reduce wasted ad spend by an average of 35% within the first 60 days",
+    "PulseIQ connects all your ad channels - Google, Meta, LinkedIn, TikTok - into a single performance view with actionable recommendations",
+    "Our AI identifies underperforming segments and reallocates budget in real time, so your team can focus on strategy rather than manual optimization"
+  ],
+  "objection_handlers": {
+    "price": "I completely understand - marketing budgets are under more scrutiny than ever. What our clients find is that the reduction in wasted spend typically pays for the platform within the first month. Would it be useful if I walked you through a quick estimate based on your current monthly ad spend?",
+    "not_interested": "That's fair. Can I ask what your current process looks like for tracking performance across channels? I want to make sure I'm not wasting your time if there's genuinely no gap there.",
+    "already_have_solution": "A lot of our clients said exactly that before switching. What's one thing you wish your current tool handled better? That usually tells us quickly whether there's even a conversation worth having.",
+    "no_time": "Absolutely, I know how busy campaign season gets. Would it be alright if I sent over a one-page summary and we found 15 minutes next week at a time that works for you?",
+    "need_approval": "Makes complete sense. If I put together a brief business case for your CMO or head of growth, what are the two or three metrics they care most about? I want to make sure it speaks their language.",
+    "data_privacy": "Great question - data privacy is something we take seriously. PulseIQ operates on aggregated, anonymized performance data and is fully GDPR and CCPA compliant. We can walk your legal team through the data architecture before any commitment."
+  },
+  "closing": "Based on everything you've shared, it sounds like PulseIQ could genuinely move the needle on your campaign efficiency. The next step would be a 30-minute technical discovery call - no pitch, just us understanding your current stack and whether we're actually a fit. Does that sound reasonable?"
+}
