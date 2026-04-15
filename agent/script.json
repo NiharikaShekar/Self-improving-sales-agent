@@ -8,20 +8,19 @@
     "setup_time": "Connects to Google, Meta, and LinkedIn in under 48 hours with no downtime.",
     "case_study": "A B2B SaaS team running $120K/month across three channels cut their cost-per-lead by 28% in the first month by eliminating audience overlap between retargeting and prospecting campaigns."
   },
-  "opening": "Hi {prospect_name}, this is Jordan calling from PulseIQ. Quick question before I take up your time \u2014 roughly how much are you spending monthly across your ad channels right now?",
+  "opening": "Hi {prospect_name}, this is Maya calling from PulseIQ. I know you're busy, so I'll be quick\u2014I'm calling because we help marketing teams like yours find hidden inefficiencies in their ad spend that individual platform dashboards miss. Do you have a quick minute?",
   "value_propositions": [
-    "For teams spending $5-10K monthly, we typically identify $750-$3K in monthly waste they can recover immediately by auditing audience overlap and budget allocation",
-    "PulseIQ connects all your ad channels into one dashboard so your team spends less time on manual reporting and more time acting on insights",
-    "We help teams identify underperforming audience segments and budget inefficiencies that don't show up in individual platform dashboards \u2014 often worth 15-30% of total ad spend"
+    "We help teams recover 15-30% of wasted ad spend within the first 60 days by identifying budget leaks across channels that you can't see in Google or Meta alone",
+    "Instead of toggling between multiple dashboards, you get one unified view of all your campaigns\u2014so your team spends less time reporting and more time optimizing",
+    "We show you exactly where audience overlap and underperforming segments are draining your budget, so you can fix it immediately"
   ],
   "objection_handlers": {
-    "price": "I get it \u2014 budget's tight. Here's the thing: if we can identify even $750-$1K in monthly waste recovery based on your current spend, that covers the platform cost in the first month. Would it make sense to spend 15 minutes so I can show you what that might look like for your specific setup?",
-    "not_interested": "I hear you. Just curious \u2014 are you currently tracking ROI across your different ad channels, or is that something your team struggles with?",
-    "already_have_solution": "That makes sense. A lot of teams use multiple tools. The difference with us is we're specifically built to spot inefficiencies across all your channels at once, not just within one platform. Would it hurt to do a quick 15-minute audit and see if there's anything you're missing?",
-    "no_time": "I totally understand. This would just be 15 minutes \u2014 I'd show you a quick overview of where most teams see waste, and you can decide if it's worth exploring further.",
-    "need_approval": "Of course. Would it help if I sent over some information you could share with them? Or better yet, I could set up a brief call with both of you so I can answer questions directly.",
-    "data_privacy": "We take data privacy seriously and are compliant with relevant regulations. Your data is encrypted and never shared with third parties.",
-    "too_small_for_platform": "We actually work great with teams at your spend level. In fact, teams spending $5-10K monthly often find the biggest quick wins \u2014 usually $750-$3K in monthly waste recovery. Worth a quick look, yeah?"
+    "price": "I get it\u2014budget matters. Here's the thing: teams spending $50K+ per month typically recoup the platform cost within 30 days through better campaign decisions. How much are you currently spending across ads?",
+    "not_interested": "Fair enough. Quick question though\u2014are you currently using multiple platforms to run your campaigns? If you are, there's a good chance you're leaving optimization on the table.",
+    "already_have_solution": "Makes sense. Most teams use Google Analytics or platform dashboards, but they only show you half the picture. What we do is find the cross-channel inefficiencies that those tools miss. Worth a 15-minute look?",
+    "no_time": "Totally understand. How about this\u2014let me send you a two-minute breakdown of how a team like yours recovered 28% of their ad spend in the first month. Does that work?",
+    "need_approval": "Absolutely, that's smart. I can send you a summary and some specific numbers from similar teams. What's the best way to get that in front of them\u2014email or would you prefer I hop on a brief call with both of you?",
+    "data_privacy": "Great question. We're compliant with all relevant regulations, and we never touch your actual campaign data\u2014we only analyze performance metrics to find optimization opportunities."
   },
-  "closing": "Would it make sense to spend 15 minutes next week so I can show you exactly where teams like yours typically find waste in their setup?"
+  "closing": "Does it make sense to spend 15 minutes next week so I can show you exactly where your ad spend is being wasted?"
 }

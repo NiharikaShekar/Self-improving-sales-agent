@@ -8,7 +8,7 @@
     "setup_time": "Connects to Google, Meta, and LinkedIn in under 48 hours with no downtime.",
     "case_study": "A B2B SaaS team running $120K/month across three channels cut their cost-per-lead by 28% in the first month by eliminating audience overlap between retargeting and prospecting campaigns."
   },
-  "opening": "Hi {prospect_name}, this is Jordan calling from PulseIQ. We use AI to help marketing teams improve their campaign ROI. Do you have a few minutes to chat?",
+  "opening": "Hi {prospect_name}, this is Maya calling from PulseIQ. We use AI to help marketing teams improve their campaign ROI. Do you have a few minutes to chat?",
   "value_propositions": [
     "Our clients reduce wasted ad spend by an average of 15-30% within the first 60 days",
     "PulseIQ connects all your ad channels into one dashboard so your team spends less time on manual reporting",

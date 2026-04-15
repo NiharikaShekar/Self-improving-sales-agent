@@ -83,10 +83,15 @@ class ConversationEngine:
             return "rejected"
         return None
 
-    def _speak(self, text: str) -> None:
+    def _speak_agent(self, text: str) -> None:
         if self.voice_mode and self.tts:
-            print("  [Speaking...]\n")
-            self.tts.speak(text)
+            print("  [Agent speaking...]\n")
+            self.tts.speak_agent(text)
+
+    def _speak_prospect(self, text: str) -> None:
+        if self.voice_mode and self.tts:
+            print("  [Prospect speaking...]\n")
+            self.tts.speak_prospect(text)
 
     def run(self, prospect_name: str, persona: str = "skeptical") -> dict:
         prospect = ProspectSimulator(persona=persona)
@@ -113,13 +118,14 @@ class ConversationEngine:
         agent_reply = self._agent_turn(agent_messages)
         conversation_log.append({"role": "agent", "content": agent_reply})
         print(f"AGENT     : {agent_reply}\n")
-        self._speak(agent_reply)
+        self._speak_agent(agent_reply)
 
         # --- Conversation loop (max 8 prospect turns) ---
         for _ in range(8):
             prospect_reply = prospect.respond(agent_reply)
             conversation_log.append({"role": "prospect", "content": prospect_reply})
             print(f"PROSPECT  : {prospect_reply}\n")
+            self._speak_prospect(prospect_reply)
 
             outcome = self._detect_outcome(prospect_reply)
             if outcome:
@@ -134,7 +140,7 @@ class ConversationEngine:
             agent_reply = self._agent_turn(agent_messages)
             conversation_log.append({"role": "agent", "content": agent_reply})
             print(f"AGENT     : {agent_reply}\n")
-            self._speak(agent_reply)
+            self._speak_agent(agent_reply)
 
         print(f"\n{'='*60}")
         print(f"  OUTCOME : {(outcome or 'incomplete').upper()}")
