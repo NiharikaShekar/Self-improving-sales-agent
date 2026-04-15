@@ -2,19 +2,25 @@
   "version": 1,
   "product_name": "PulseIQ",
   "product_description": "an AI-powered marketing intelligence platform that helps growth teams optimize campaign performance and reduce wasted ad spend",
-  "opening": "Hi {prospect_name}, this is Jordan calling from PulseIQ. I hope I haven't caught you at a bad time. We work with marketing and growth teams to cut wasted ad spend and improve campaign ROI using AI-driven insights, and I thought it might be worth a quick conversation. Do you have three minutes?",
+  "product_metadata": {
+    "pricing": "Plans start at $799 per month. Teams spending over $50K/month on ads typically see full ROI within 30 days.",
+    "avg_waste_reduction": "Teams recover an average of 15-30% of wasted ad spend within the first 60 days.",
+    "setup_time": "Connects to Google, Meta, and LinkedIn in under 48 hours with no downtime.",
+    "case_study": "A B2B SaaS team running $120K/month across three channels cut their cost-per-lead by 28% in the first month by eliminating audience overlap between retargeting and prospecting campaigns."
+  },
+  "opening": "Hi {prospect_name}, this is Jordan calling from PulseIQ. We use AI to help marketing teams improve their campaign ROI. Do you have a few minutes to chat?",
   "value_propositions": [
-    "Our clients reduce wasted ad spend by an average of 35% within the first 60 days",
-    "PulseIQ connects all your ad channels - Google, Meta, LinkedIn, TikTok - into a single performance view with actionable recommendations",
-    "Our AI identifies underperforming segments and reallocates budget in real time, so your team can focus on strategy rather than manual optimization"
+    "Our clients reduce wasted ad spend by an average of 15-30% within the first 60 days",
+    "PulseIQ connects all your ad channels into one dashboard so your team spends less time on manual reporting",
+    "We help teams identify underperforming audience segments and budget inefficiencies they cannot see in individual platform dashboards"
   ],
   "objection_handlers": {
-    "price": "I completely understand - marketing budgets are under more scrutiny than ever. What our clients find is that the reduction in wasted spend typically pays for the platform within the first month. Would it be useful if I walked you through a quick estimate based on your current monthly ad spend?",
-    "not_interested": "That's fair. Can I ask what your current process looks like for tracking performance across channels? I want to make sure I'm not wasting your time if there's genuinely no gap there.",
-    "already_have_solution": "A lot of our clients said exactly that before switching. What's one thing you wish your current tool handled better? That usually tells us quickly whether there's even a conversation worth having.",
-    "no_time": "Absolutely, I know how busy campaign season gets. Would it be alright if I sent over a one-page summary and we found 15 minutes next week at a time that works for you?",
-    "need_approval": "Makes complete sense. If I put together a brief business case for your CMO or head of growth, what are the two or three metrics they care most about? I want to make sure it speaks their language.",
-    "data_privacy": "Great question - data privacy is something we take seriously. PulseIQ operates on aggregated, anonymized performance data and is fully GDPR and CCPA compliant. We can walk your legal team through the data architecture before any commitment."
+    "price": "I understand budget is a concern. The platform does pay for itself over time through better campaign performance.",
+    "not_interested": "I hear you. Is there a better time to call, or someone else I should speak with?",
+    "already_have_solution": "That makes sense. A lot of teams use multiple tools. We might be able to complement what you already have.",
+    "no_time": "No problem, I can be quick. We just help teams get more out of their ad spend.",
+    "need_approval": "Of course. Would it help if I sent over some information you could share with them?",
+    "data_privacy": "We take data privacy seriously and are compliant with relevant regulations."
   },
-  "closing": "Based on everything you've shared, it sounds like PulseIQ could genuinely move the needle on your campaign efficiency. The next step would be a 30-minute technical discovery call - no pitch, just us understanding your current stack and whether we're actually a fit. Does that sound reasonable?"
+  "closing": "Would it make sense to set up a quick call so I can show you how it works for teams like yours?"
 }

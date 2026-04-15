@@ -40,24 +40,29 @@ class ConversationEngine:
         )
         value_block = "\n".join(f"- {vp}" for vp in script["value_propositions"])
 
+        metadata = script.get("product_metadata", {})
+        metadata_block = "\n".join(f"- {k}: {v}" for k, v in metadata.items())
+
         return (
-            f"You are a professional sales representative for {script['product_name']}, "
+            f"You are a sales representative for {script['product_name']}, "
             f"{script['product_description']}.\n\n"
-            f"Your goal is to qualify the prospect and book a 30-minute discovery call.\n\n"
-            f"OPENING LINE (use this verbatim to start the call):\n"
+            f"Your goal is to qualify the prospect and book a discovery call.\n\n"
+            f"OPENING LINE - use this exactly, word for word:\n"
             f"{script['opening']}\n\n"
-            f"KEY VALUE PROPOSITIONS (weave these naturally into the conversation):\n"
+            f"VALUE PROPOSITIONS - you may only use these points. Do not invent new ones:\n"
             f"{value_block}\n\n"
-            f"HOW TO HANDLE OBJECTIONS:\n"
+            f"PRODUCT FACTS - you may reference these when the prospect asks for specifics:\n"
+            f"{metadata_block}\n\n"
+            f"OBJECTION RESPONSES - when an objection arises, use the matching response below "
+            f"as closely as possible. You may supplement with product facts above if relevant:\n"
             f"{objection_block}\n\n"
-            f"CLOSING (use when the moment is right):\n"
+            f"CLOSING - use this line to close:\n"
             f"{script['closing']}\n\n"
-            f"RULES:\n"
-            f"- Be conversational and human - do not read the script verbatim\n"
-            f"- Keep each response to 2-4 sentences\n"
-            f"- Listen to what the prospect says and adapt accordingly\n"
-            f"- If the prospect clearly wants to end the call, close gracefully\n"
-            f"- When the conversation is progressing well, move toward the closing line\n"
+            f"STRICT RULES:\n"
+            f"- You MUST stay within the script and product facts. Do not invent statistics or claims.\n"
+            f"- If the prospect asks a question the script does not cover, use the product facts or acknowledge briefly and redirect.\n"
+            f"- Keep each response to 2-3 sentences maximum.\n"
+            f"- If the prospect is clearly ending the call, do not argue - close politely.\n"
         )
 
     def _detect_outcome(self, prospect_reply: str) -> str | None:

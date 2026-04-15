@@ -2,21 +2,26 @@
   "version": 2,
   "product_name": "PulseIQ",
   "product_description": "an AI-powered marketing intelligence platform that helps growth teams optimize campaign performance and reduce wasted ad spend",
-  "opening": "Hi {prospect_name}, this is Jordan calling from PulseIQ. I know you're busy, so I'll be direct: we help marketing teams cut wasted ad spend by an average of 35% in the first 60 days using AI-driven insights. Do you have three minutes to see if it's relevant for you?",
+  "product_metadata": {
+    "pricing": "Plans start at $799 per month. Teams spending over $50K/month on ads typically see full ROI within 30 days.",
+    "avg_waste_reduction": "Teams recover an average of 15-30% of wasted ad spend within the first 60 days.",
+    "setup_time": "Connects to Google, Meta, and LinkedIn in under 48 hours with no downtime.",
+    "case_study": "A B2B SaaS team running $120K/month across three channels cut their cost-per-lead by 28% in the first month by eliminating audience overlap between retargeting and prospecting campaigns."
+  },
+  "opening": "Hi {prospect_name}, this is Jordan calling from PulseIQ. Quick question before I take up your time \u2014 roughly how much are you spending monthly across your ad channels right now?",
   "value_propositions": [
-    "Our clients reduce wasted ad spend by an average of 35% within the first 60 days",
-    "PulseIQ connects all your ad channels (Google, Meta, LinkedIn, TikTok) into a single performance view with actionable recommendations you can act on immediately",
-    "Our AI identifies underperforming segments and reallocates budget in real time, so your team shifts focus from manual optimization to strategy"
+    "For teams spending $5-10K monthly, we typically identify $750-$3K in monthly waste they can recover immediately by auditing audience overlap and budget allocation",
+    "PulseIQ connects all your ad channels into one dashboard so your team spends less time on manual reporting and more time acting on insights",
+    "We help teams identify underperforming audience segments and budget inefficiencies that don't show up in individual platform dashboards \u2014 often worth 15-30% of total ad spend"
   ],
   "objection_handlers": {
-    "price": "I get it - every dollar counts in marketing spend. Here's what we typically see: the 35% reduction in wasted spend covers the platform cost within the first month, sometimes faster depending on your current ad volume. Would it help if I showed you a quick estimate based on your monthly spend?",
-    "not_interested": "Fair enough. Quick question though - how are you currently tracking performance across all your ad channels right now? That usually tells us fast whether there's even a conversation worth having.",
-    "already_have_solution": "Makes sense. Most of our best clients were using something else first. What's one thing your current tool doesn't do as well as you'd like? That tells us quickly if there's a real fit or not.",
-    "no_time": "Completely understand - I'll keep it brief. How about I send over a one-pager on how PulseIQ works, and we grab 15 minutes next week when things calm down?",
-    "need_approval": "Totally fair. If I draft a quick business case for your CMO or head of growth, what are the top two or three metrics they watch most closely? I want to make sure it lands right.",
-    "data_privacy": "Great question - we take that seriously. PulseIQ works with aggregated, anonymized performance data and is fully GDPR and CCPA compliant. We can walk your legal team through our data architecture before you decide anything.",
-    "already_have_solution_detailed": "A lot of our clients used tools like yours before switching. What's the biggest gap you're hitting with your current setup? Sometimes it's channel integration, sometimes it's the speed of optimization - but that gap usually tells us if we're worth talking to.",
-    "busy_season": "I know campaign season is chaos. Here's what I suggest - let me send a quick overview, and we can lock in just 15 minutes next week when you've got breathing room. Sound good?"
+    "price": "I get it \u2014 budget's tight. Here's the thing: if we can identify even $750-$1K in monthly waste recovery based on your current spend, that covers the platform cost in the first month. Would it make sense to spend 15 minutes so I can show you what that might look like for your specific setup?",
+    "not_interested": "I hear you. Just curious \u2014 are you currently tracking ROI across your different ad channels, or is that something your team struggles with?",
+    "already_have_solution": "That makes sense. A lot of teams use multiple tools. The difference with us is we're specifically built to spot inefficiencies across all your channels at once, not just within one platform. Would it hurt to do a quick 15-minute audit and see if there's anything you're missing?",
+    "no_time": "I totally understand. This would just be 15 minutes \u2014 I'd show you a quick overview of where most teams see waste, and you can decide if it's worth exploring further.",
+    "need_approval": "Of course. Would it help if I sent over some information you could share with them? Or better yet, I could set up a brief call with both of you so I can answer questions directly.",
+    "data_privacy": "We take data privacy seriously and are compliant with relevant regulations. Your data is encrypted and never shared with third parties.",
+    "too_small_for_platform": "We actually work great with teams at your spend level. In fact, teams spending $5-10K monthly often find the biggest quick wins \u2014 usually $750-$3K in monthly waste recovery. Worth a quick look, yeah?"
   },
-  "closing": "From what you've told me, PulseIQ could genuinely improve how efficient your campaigns run. The next step is a 30-minute technical discovery call - no sales pitch, just us getting to know your stack and confirming we're actually a good fit. Does that work for you?"
+  "closing": "Would it make sense to spend 15 minutes next week so I can show you exactly where teams like yours typically find waste in their setup?"
 }
