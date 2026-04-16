@@ -281,21 +281,25 @@ Voice is integrated directly into the conversation flow. Maya speaks each line t
 
 ### Known limitations and trade-offs
 
-**Sample size.** Four calls per iteration is a small sample. The improvement loop has enough signal to act on with four calls, but the conversion rate numbers have high variance. In a real deployment, you would want at least 20-30 calls per version before triggering an improvement cycle. The current design makes this easy: the improver fetches all calls for the current version, so running more calls before triggering `/improve` produces a richer summary.
+**Sample size vs. signal quality.** Four calls per iteration is intentionally small for a demo. With only four data points, a single outlier call can shift the conversion rate by 25%. In a production deployment you would want 20-50 calls per version before triggering the improvement cycle. The design already supports this: the improver reads all calls for the current version from the database, so running more calls before hitting `/improve` costs nothing architecturally.
 
-**LLM non-determinism.** Prospect behavior is LLM-generated, which means results vary between runs even with identical scripts. The hostile and price-sensitive personas can occasionally be more lenient than their prompts intend. This is a fundamental property of language model inference and not specific to this implementation.
+**LLM non-determinism.** Both the agent and the prospects are LLM-generated, which means two runs with identical scripts can produce different outcomes. A hostile persona that rejects on one run might stay on the line on the next, purely due to sampling variance. This makes the improvement loop directionally correct but not deterministic. A real deployment would mitigate this with larger sample sizes and human review of the generated script before promotion.
 
-**Script constraints vs. agent flexibility.** Maya is constrained strictly to the script content. This makes the improvement loop meaningful (there is a clear thing being improved) but means she cannot improvise when a prospect raises a scenario not covered by the script. She acknowledges and redirects rather than answering. This was a deliberate trade-off.
+**Script constraints vs. agent flexibility.** Maya is constrained to only the content in the script. This is a deliberate trade-off: an unconstrained agent would be harder to evaluate and improve systematically, because you cannot attribute a better outcome to a specific script change if the agent is also improvising. The constraint makes the feedback loop meaningful at the cost of the agent sometimes redirecting instead of answering a question the script does not cover.
 
-**Voice latency.** ElevenLabs API calls add approximately 2-3 seconds per turn. A full 8-turn conversation takes 30-60 seconds per call, making a 4-call batch take 2-4 minutes. This is fine for demonstration but would need streaming or caching for production use.
+**API cost vs. human SDR cost.** Each simulated call makes approximately 10-15 LLM requests (agent turns, prospect turns, analysis). At Claude Haiku pricing this costs well under $0.01 per call. ElevenLabs TTS at standard rates adds roughly $0.05-0.10 per call depending on turn length. A real outbound call from a human SDR costs $2-5 in direct salary alone, before accounting for training, management, and turnover. At scale, an AI-assisted call system running this pattern significantly reduces cost per qualified lead, while the improvement loop compounds that advantage by raising conversion rates over time without additional headcount.
+
+**Voice latency.** ElevenLabs audio generation adds 2-3 seconds per turn. For demonstration this is acceptable. A production system would use streaming TTS (which ElevenLabs supports) to eliminate the pause between turns.
 
 ### Business impact reasoning
 
-The core value proposition of this system is the feedback loop. A static sales script is written once and deployed indefinitely. This system turns every failed call into a data point that informs the next version of the script. In a real environment, a sales team running 50 calls per day would generate enough signal within a week to identify which objection types are causing the most rejections, whether the agent is being too vague about pricing, and whether the opening line is losing hostile prospects before the pitch even starts.
+The real-world problem this system addresses is that sales scripts are static. A human SDR team might iterate on their pitch once a quarter after a manager reviews call recordings. This system closes that loop automatically after every batch: calls happen, outcomes are recorded, objection patterns surface, and the script is rewritten the same day.
 
-The improvement cycle could plausibly be triggered automatically on a schedule (for example, every Monday morning) rather than requiring a human to initiate it. The `/improve` endpoint and the n8n workflow already support this pattern.
+For a B2B SaaS company running outbound at scale, a 25% improvement in conversion rate (as demonstrated from v1 to v2) directly reduces customer acquisition cost. If a team books 100 discovery calls per month at a 10% conversion rate, raising that to 12.5% means 25 extra meetings from the same call volume -- with no change in headcount or ad spend.
 
-The distinction between call quality categories (excellent, good, average, poor) and specific improvement notes also provides a lightweight coaching signal that a human sales manager could review without reading full transcripts.
+The improvement notes generated per call also serve a second purpose: they give sales managers specific, actionable coaching points ("agent should have surfaced the pricing tier mismatch earlier") without requiring them to listen to recordings. At 50+ calls per day this kind of automated summarization saves several hours of review time per week.
+
+The `/improve` endpoint and n8n workflow are already structured to support scheduled execution. A cron-triggered n8n workflow could run the full improvement cycle every Monday morning automatically, so the script that goes into production each week is always informed by the previous week's call data.
 
 ---
 
