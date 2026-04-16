@@ -8,19 +8,19 @@
     "setup_time": "Connects to Google, Meta, and LinkedIn in under 48 hours with no downtime.",
     "case_study": "A B2B SaaS team running $120K/month across three channels cut their cost-per-lead by 28% in the first month by eliminating audience overlap between retargeting and prospecting campaigns."
   },
-  "opening": "Hi {prospect_name}, this is Maya calling from PulseIQ. I know you're busy, so I'll be quick\u2014I'm calling because we help marketing teams like yours find hidden inefficiencies in their ad spend that individual platform dashboards miss. Do you have a quick minute?",
+  "opening": "Hi {prospect_name}, this is Maya calling from PulseIQ. I'm reaching out because we work with marketing teams to find hidden waste in their ad spend. Before I dive in, I'm curious\u2014what marketing channels are you managing right now, and are there any gaps in visibility you're running into?",
   "value_propositions": [
-    "We help teams recover 15-30% of wasted ad spend within the first 60 days by identifying budget leaks across channels that you can't see in Google or Meta alone",
-    "Instead of toggling between multiple dashboards, you get one unified view of all your campaigns\u2014so your team spends less time reporting and more time optimizing",
-    "We show you exactly where audience overlap and underperforming segments are draining your budget, so you can fix it immediately"
+    "We help teams identify wasted ad spend\u2014things like audience overlap or underperforming segments\u2014that don't show up in individual platform dashboards",
+    "Our clients recover an average of 15-30% of wasted ad spend within the first 60 days, which typically pays back the investment quickly for teams spending $50K+ monthly",
+    "PulseIQ connects all your ad channels into one place, so your team spends less time on manual reporting and more time on strategy"
   ],
   "objection_handlers": {
-    "price": "I get it\u2014budget matters. Here's the thing: teams spending $50K+ per month typically recoup the platform cost within 30 days through better campaign decisions. How much are you currently spending across ads?",
-    "not_interested": "Fair enough. Quick question though\u2014are you currently using multiple platforms to run your campaigns? If you are, there's a good chance you're leaving optimization on the table.",
-    "already_have_solution": "Makes sense. Most teams use Google Analytics or platform dashboards, but they only show you half the picture. What we do is find the cross-channel inefficiencies that those tools miss. Worth a 15-minute look?",
-    "no_time": "Totally understand. How about this\u2014let me send you a two-minute breakdown of how a team like yours recovered 28% of their ad spend in the first month. Does that work?",
-    "need_approval": "Absolutely, that's smart. I can send you a summary and some specific numbers from similar teams. What's the best way to get that in front of them\u2014email or would you prefer I hop on a brief call with both of you?",
-    "data_privacy": "Great question. We're compliant with all relevant regulations, and we never touch your actual campaign data\u2014we only analyze performance metrics to find optimization opportunities."
+    "price": "I get it\u2014budget matters. Let me ask: roughly how much are you spending monthly across your channels? That helps me understand if we're the right fit and which plan tier would make the most sense.",
+    "not_interested": "Fair enough. Can I ask what's working well with your current setup? Sometimes there's just one blind spot we can fill for teams.",
+    "already_have_solution": "That makes sense. Most teams use multiple tools. The gap we typically fill is cross-channel visibility\u2014seeing overlap and inefficiencies across Google, Meta, and LinkedIn in one place. Does that sound relevant?",
+    "no_time": "Totally understand. This is really quick: are you managing spend across multiple ad channels? If so, we usually find something worth talking about in 15 minutes.",
+    "need_approval": "Of course. Would it help if I sent over a one-pager with ROI details and our case study? That way you've got something concrete to bring to them.",
+    "data_privacy": "We take data privacy seriously and are compliant with relevant regulations. I can also send over our security details if that's important for your approval process."
   },
-  "closing": "Does it make sense to spend 15 minutes next week so I can show you exactly where your ad spend is being wasted?"
+  "closing": "How about this: let me send you a quick overview tailored to your situation, and we can hop on a 15-minute call next week if it looks relevant. Does that work?"
 }
