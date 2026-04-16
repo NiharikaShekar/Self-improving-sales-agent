@@ -86,12 +86,18 @@ class ConversationEngine:
     def _speak_agent(self, text: str) -> None:
         if self.voice_mode and self.tts:
             print("  [Agent speaking...]\n")
-            self.tts.speak_agent(text)
+            try:
+                self.tts.speak_agent(text)
+            except Exception as e:
+                print(f"  [TTS error: {e} — continuing in text mode]")
 
     def _speak_prospect(self, text: str) -> None:
         if self.voice_mode and self.tts:
             print("  [Prospect speaking...]\n")
-            self.tts.speak_prospect(text)
+            try:
+                self.tts.speak_prospect(text)
+            except Exception as e:
+                print(f"  [TTS error: {e} — continuing in text mode]")
 
     def run(self, prospect_name: str, persona: str = "skeptical") -> dict:
         prospect = ProspectSimulator(persona=persona)
@@ -159,10 +165,17 @@ class ConversationEngine:
         }
 
     def _agent_turn(self, messages: list) -> str:
-        response = self.client.messages.create(
-            model="claude-haiku-4-5-20251001",
-            max_tokens=300,
-            system=self._build_agent_system_prompt(),
-            messages=messages
-        )
-        return response.content[0].text.strip()
+        for attempt in range(2):
+            try:
+                response = self.client.messages.create(
+                    model="claude-haiku-4-5-20251001",
+                    max_tokens=300,
+                    system=self._build_agent_system_prompt(),
+                    messages=messages
+                )
+                return response.content[0].text.strip()
+            except Exception as e:
+                if attempt == 0:
+                    print(f"  [Agent LLM error, retrying: {e}]")
+                else:
+                    raise RuntimeError(f"Agent LLM failed after 2 attempts: {e}") from e

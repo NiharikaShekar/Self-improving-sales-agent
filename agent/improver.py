@@ -83,6 +83,13 @@ class ScriptImprover:
     def improve(self) -> dict:
         current_version = self.script["version"]
         calls = fetch_calls_for_version(current_version)
+
+        if not calls:
+            raise ValueError(
+                f"No calls recorded for script v{current_version}. "
+                "Run a batch first before triggering the improvement cycle."
+            )
+
         summary = self._build_summary(calls)
 
         print(f"\n{'='*60}")
@@ -113,13 +120,15 @@ INSTRUCTIONS:
 Respond with valid JSON only. No explanation, no markdown, no code fences.
 """
 
-        response = self.client.messages.create(
-            model="claude-haiku-4-5-20251001",
-            max_tokens=2000,
-            messages=[{"role": "user", "content": prompt}]
-        )
-
-        raw = response.content[0].text.strip()
+        try:
+            response = self.client.messages.create(
+                model="claude-haiku-4-5-20251001",
+                max_tokens=2000,
+                messages=[{"role": "user", "content": prompt}]
+            )
+            raw = response.content[0].text.strip()
+        except Exception as e:
+            raise RuntimeError(f"LLM call failed during improvement: {e}") from e
 
         if raw.startswith("```"):
             raw = raw.split("```")[1]
@@ -127,14 +136,29 @@ Respond with valid JSON only. No explanation, no markdown, no code fences.
                 raw = raw[4:]
             raw = raw.strip()
 
-        new_script = json.loads(raw)
+        try:
+            new_script = json.loads(raw)
+        except json.JSONDecodeError as e:
+            raise ValueError(
+                f"Improvement LLM returned invalid JSON — script not modified. Error: {e}\nRaw output: {raw[:200]}"
+            ) from e
+
+        required_keys = {"version", "product_name", "opening", "value_propositions", "objection_handlers", "closing"}
+        missing = required_keys - set(new_script.keys())
+        if missing:
+            raise ValueError(
+                f"Improved script is missing required fields: {missing} — script not modified."
+            )
+
+        if new_script["version"] != current_version + 1:
+            new_script["version"] = current_version + 1
 
         self._archive_current_script()
 
         with open(SCRIPT_PATH, "w") as f:
             json.dump(new_script, f, indent=2)
 
-        print(f"Script upgraded: v{current_version} → v{new_script['version']}")
+        print(f"Script upgraded: v{current_version} -> v{new_script['version']}")
         print(f"Saved to {SCRIPT_PATH.relative_to(Path.cwd())}\n")
 
         return new_script

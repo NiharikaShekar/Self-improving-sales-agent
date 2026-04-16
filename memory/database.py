@@ -35,29 +35,33 @@ def initialize_db() -> None:
 def save_call(result: dict, analysis: dict) -> int:
     timestamp = datetime.now(timezone.utc).isoformat()
 
-    with _connect() as conn:
-        cursor = conn.execute(
-            """
-            INSERT INTO calls (
-                timestamp, prospect_name, persona, script_version,
-                outcome, turn_count, objections_raised,
-                call_quality, improvement_note, conversation
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-            """,
-            (
-                timestamp,
-                result["prospect_name"],
-                result["persona"],
-                result["script_version"],
-                result["outcome"],
-                result["turn_count"],
-                json.dumps(analysis.get("objections_raised", [])),
-                analysis.get("call_quality"),
-                analysis.get("improvement_note"),
-                json.dumps(result["conversation"]),
-            ),
-        )
-        return cursor.lastrowid
+    try:
+        with _connect() as conn:
+            cursor = conn.execute(
+                """
+                INSERT INTO calls (
+                    timestamp, prospect_name, persona, script_version,
+                    outcome, turn_count, objections_raised,
+                    call_quality, improvement_note, conversation
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                """,
+                (
+                    timestamp,
+                    result["prospect_name"],
+                    result["persona"],
+                    result["script_version"],
+                    result["outcome"],
+                    result["turn_count"],
+                    json.dumps(analysis.get("objections_raised", [])),
+                    analysis.get("call_quality"),
+                    analysis.get("improvement_note"),
+                    json.dumps(result["conversation"]),
+                ),
+            )
+            return cursor.lastrowid
+    except Exception as e:
+        print(f"  [DB write error: {e} — call result not saved]")
+        return -1
 
 
 def fetch_recent_calls(limit: int = 10) -> list[dict]:
